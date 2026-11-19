@@ -18,6 +18,7 @@
 | `deleg_895b10e1` | 2026-11-19 | 6 | `deepseek-v4.1-flash` | 950.8 с (15.85 мин) | 3754.6 с (62.58 мин) | ×3.949 | 174 | 183 | [`metrics/wave-deleg_895b10e1.json`](../metrics/wave-deleg_895b10e1.json) |
 | `deleg_76dc5863` | 2026-11-19 | 6 | `deepseek-v4.1-flash` | 1153.6 с (19.23 мин) | 5090.7 с (84.85 мин) | ×4.413 | 196 | 407 | [`metrics/wave-deleg_76dc5863.json`](../metrics/wave-deleg_76dc5863.json) |
 | `deleg_3b8f0c4e` | 2026-11-20 | 6 | `deepseek-v4.1-flash` | 611.7 с (10.20 мин) | 2286.8 с (38.11 мин) | ×3.738 | 177 | 211 | [`metrics/wave-deleg_3b8f0c4e.json`](../metrics/wave-deleg_3b8f0c4e.json) |
+| `deleg_3abcb636` | 2026-11-20 | 3 | `deepseek-v4.1-flash` | 490.5 с (8.17 мин) | 1349.9 с (22.50 мин) | ×2.752 | 100 | 112 | [`metrics/wave-deleg_3abcb636.json`](../metrics/wave-deleg_3abcb636.json) |
 
 
 ### Волна `deleg_4924890d` — по агентам
@@ -80,6 +81,18 @@
 Токены: вход 10343767, выход 128329. Стоимость: null.
 
 
+### Волна `deleg_3abcb636` — по агентам
+Запуск 2026-11-20T01:06:14+02:00 → завершение 2026-11-20T01:14:24+02:00. wall 490.5 с (8.17 мин).
+
+| # | роль | статус | интервал, с | доля wall | API | tool calls |
+|---|---|---|---|---|---|---|
+| 0 | handover index and 15-minute verification | completed | 490.0 | ×1.00 | 32 | 39 |
+| 1 | what we changed (git account) | completed | 389.93 | ×0.79 | 33 | 39 |
+| 2 | what we found (process forensics) | completed | 469.97 | ×0.96 | 35 | 34 |
+
+Токены: вход 5626619, выход 87130. Стоимость: null.
+
+
 ## Журнал событий
 Каждая строка — реальное машинное время с часовым поясом. Полный лог: [`metrics/events.jsonl`](../metrics/events.jsonl).
 
@@ -100,6 +113,7 @@
 | 2026-11-20T00:30:18+02:00 | `writers_wave_dispatched` | parent | documentation wave: 6 writers with disjoint file allowlists (repair map, openspec archive+specs, handover, README/PROJECT-MAP, DECISIONS, BASELINE) |
 | 2026-11-20T01:01:19+02:00 | `docs_wave_completed` | parent | documentation wave finished: 6/6 writers, wall 611.71 s (10.2 min), sum 2286.81 s (x3.74), 177 API / 211 tool calls; verify_docs PASS (0 outside allowlist, 0 broken links, 0 leaks) |
 | 2026-11-20T01:01:20+02:00 | `docs_wave_published` | parent | commit 12a42f2: repair map, archived change, two specs, handover, single entry point, LAB-06..12, baseline update |
+| 2026-11-20T01:16:04+02:00 | `handover_published` | parent | handover package committed 78ebe5d: 3 documents, verify PASS (0 outside allowlist, 0 broken links, 0 leaks), 103 files in PR #1 |
 
 
 ## Чего эти числа не доказывают

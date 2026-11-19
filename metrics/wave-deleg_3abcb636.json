@@ -1,0 +1,89 @@
+{
+  "delegation_id": "deleg_3abcb636",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T01:06:14+02:00",
+  "completed_at": "2026-11-20T01:14:24+02:00",
+  "wall_seconds": 490.49,
+  "worker_count": 3,
+  "sum_worker_seconds": 1349.9,
+  "parallel_ratio": 2.752,
+  "total_api_calls": 100,
+  "total_tool_calls": 112,
+  "total_tokens": {
+    "input": 5626619,
+    "output": 87130
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 490.0,
+      "api_calls": 32,
+      "tool_calls": 39,
+      "tool_calls_by_tool": {
+        "execute_code": 14,
+        "read_file": 14,
+        "write_file": 8,
+        "patch": 3
+      },
+      "failed_tool_calls": 2,
+      "tokens": {
+        "input": 1945733,
+        "output": 34287
+      },
+      "truncated": false,
+      "role": "handover index and 15-minute verification",
+      "artifact": ""
+    },
+    {
+      "task_index": 1,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 389.93,
+      "api_calls": 33,
+      "tool_calls": 39,
+      "tool_calls_by_tool": {
+        "terminal": 24,
+        "execute_code": 6,
+        "write_file": 2,
+        "patch": 5,
+        "read_file": 2
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1272727,
+        "output": 24531
+      },
+      "truncated": false,
+      "role": "what we changed (git account)",
+      "artifact": ""
+    },
+    {
+      "task_index": 2,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 469.97,
+      "api_calls": 35,
+      "tool_calls": 34,
+      "tool_calls_by_tool": {
+        "execute_code": 24,
+        "read_file": 6,
+        "write_file": 3,
+        "patch": 1
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 2408159,
+        "output": 28312
+      },
+      "truncated": false,
+      "role": "what we found (process forensics)",
+      "artifact": ""
+    }
+  ]
+}
