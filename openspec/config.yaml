@@ -1,0 +1,23 @@
+schema: spec-driven
+
+context: |
+  Minemod recovery lab: Fabric Minecraft mod, imported upstream baseline
+  f69785bbe15088b0d015c71d8cf187aa365c5079. The playable loop already exists.
+  Existing capabilities are baseline, not newly delivered lab features.
+  E0 performed static inspection only; no fresh Gradle, GameTest or client run.
+  Read docs/BASELINE.md, docs/DECISIONS.md and docs/DELIVERY.md.
+  Preserve All-Rights-Reserved until the owner explicitly approves relicensing.
+  Adopt specs incrementally; do not convert the historical archive wholesale.
+
+rules:
+  proposal:
+    - Separate existing behavior, genuinely new behavior and verification-only work.
+    - Name a bounded observable result and explicit non-goals.
+  specs:
+    - Describe observable behavior, not implementation details.
+    - Do not label imported logs or unexecuted scenarios as freshly verified.
+  design:
+    - Declare file ownership, dependencies, integration owner and safety boundaries.
+  tasks:
+    - Include revision, acceptance evidence, budget, retry limit and stop conditions.
+    - Execution requires the owner's explicit GO for the bounded change.

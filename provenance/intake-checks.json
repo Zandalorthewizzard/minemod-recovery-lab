@@ -1,0 +1,51 @@
+{
+  "input_files": 417,
+  "input_unchanged_after_inspection": true,
+  "upstream_head": "f69785bbe15088b0d015c71d8cf187aa365c5079",
+  "head_tree_files": 61,
+  "head_tree_matches_export": true,
+  "packed_objects": 267,
+  "computed_object_identities": 267,
+  "reachable_commits": 12,
+  "mod_gametests_static": 25,
+  "tests_by_class": {
+    "IntegrationGameTest.java": 2,
+    "ParryGameTest.java": 8,
+    "ShellbackCombatGameTest.java": 6,
+    "ShellbackSpawnLootGameTest.java": 5,
+    "ShieldUpgradeGameTest.java": 3,
+    "SmokeGameTest.java": 1
+  },
+  "sources_jar_matching_java": 21,
+  "sources_jar_mismatches": [],
+  "png_files_structurally_checked": 27,
+  "gradle_checksums": {
+    "wrapper.jar.sha256": {
+      "url": "https://services.gradle.org/distributions/gradle-9.7.0-wrapper.jar.sha256",
+      "published_sha256": "7a9ce74cff467ca1bf60a4fcd9f05185acceda4d0f382434d393e17864262c5d"
+    },
+    "bin.zip.sha256": {
+      "url": "https://services.gradle.org/distributions/gradle-9.7.0-bin.zip.sha256",
+      "published_sha256": "84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae"
+    },
+    "local_wrapper_sha256": "7a9ce74cff467ca1bf60a4fcd9f05185acceda4d0f382434d393e17864262c5d",
+    "declared_distribution_sha256": "84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae",
+    "wrapper_matches": true,
+    "distribution_hash_matches": true
+  },
+  "defender": {
+    "started_at": "2026-11-19T20:25:33.086922+00:00",
+    "finished_at": "2026-11-19T20:25:34.483502+00:00",
+    "elapsed_seconds": 1.3965882000047714,
+    "exit_code": 0,
+    "timed_out": false,
+    "remediation_disabled": true
+  },
+  "defender_output": "found no threats",
+  "runtime_checks_performed": false,
+  "limitations": [
+    "Source/class-name matching is not semantic bytecode equivalence.",
+    "Distribution checksum declaration was compared, not downloaded ZIP bytes.",
+    "Dependency contents and runtime behavior remain unverified."
+  ]
+}

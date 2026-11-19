@@ -1,0 +1,14 @@
+{"type": "dispatch", "ts_utc": "2026-11-19T20:24:38.986115+00:00", "stage": "E0", "actors": 6, "source": "runtime.async_delegations"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.566007+00:00", "stage": "E0", "worker": "03", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.574465+00:00", "stage": "E0", "worker": "04", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.582094+00:00", "stage": "E0", "worker": "05", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.588578+00:00", "stage": "E0", "worker": "01", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.595725+00:00", "stage": "E0", "worker": "02", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_start", "ts_utc": "2026-11-19T20:24:39.604234+00:00", "stage": "E0", "worker": "06", "model": "deepseek-v4.1-flash", "provider": "opencode-go", "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:29:00.392968+00:00", "stage": "E0", "worker": "02", "duration_seconds": 260.7972424030304, "tool_calls": 21, "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:31:43.964428+00:00", "stage": "E0", "worker": "03", "duration_seconds": 424.39842081069946, "tool_calls": 22, "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:32:32.480144+00:00", "stage": "E0", "worker": "01", "duration_seconds": 472.8915660381317, "tool_calls": 31, "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:33:28.817685+00:00", "stage": "E0", "worker": "06", "duration_seconds": 529.2134501934052, "tool_calls": 25, "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:33:57.072526+00:00", "stage": "E0", "worker": "05", "duration_seconds": 557.4904317855835, "tool_calls": 24, "source": "runtime.sessions"}
+{"type": "worker_end", "ts_utc": "2026-11-19T20:34:16.158964+00:00", "stage": "E0", "worker": "04", "duration_seconds": 576.5844988822937, "tool_calls": 34, "source": "runtime.sessions"}
+{"type": "wave_complete", "ts_utc": "2026-11-19T20:34:16.475099+00:00", "stage": "E0", "source": "runtime.async_delegations"}

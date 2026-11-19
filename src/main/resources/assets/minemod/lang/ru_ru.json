@@ -1,0 +1,7 @@
+{
+  "entity.minemod.shellback": "Панцирник",
+  "item.minemod.shellback_plate": "Пластина панцирника",
+  "item.minemod.shellback_spawn_egg": "Яйцо призыва панцирника",
+  "tooltip.minemod.plated_shield": "Пластина панцирника: парирование в такт",
+  "tooltip.minemod.plated_shield.hint": "Поднимите щит прямо перед ударом, чтобы оглушить врага"
+}
