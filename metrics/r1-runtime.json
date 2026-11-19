@@ -1,0 +1,48 @@
+{
+  "run_id": "r1",
+  "date": "2026-11-19",
+  "commit": "20eeb6d8f4d916b5a7db1e9fcdf298900b7966fb",
+  "environment": {
+    "jdk": "Temurin 25.0.5+8 LTS",
+    "gradle": "9.7.0",
+    "minecraft": "26.3",
+    "fabric_api": "0.165.2+26.3",
+    "loader": "0.20.1",
+    "isolation": "detached git worktree at the pinned commit, separate GRADLE_USER_HOME, no user worlds or launcher profiles"
+  },
+  "build": {
+    "command": "gradlew --no-daemon clean build",
+    "result": "success",
+    "seconds": 231,
+    "jar": "build/libs/minemod-0.1.0.jar",
+    "jar_sha256": "dd62c12e01bca5fb08b93180e59502e0d4d78e509eccddf5f9c16a9e9346fecc",
+    "sources_jar_sha256": "dfb6c1606a576c8a51c8ea867eb9b1a1825e6c9b68aa4721b7e5fa7eaf3f6c28"
+  },
+  "server_gametests": {
+    "included_in": "clean build",
+    "tests": 26,
+    "failed": 0,
+    "mod_tests": 25,
+    "vanilla_placeholder": 1,
+    "suite_seconds": 5.024,
+    "note": "25 mod scenarios plus minecraft:always_pass; the historical 26/26 claim is reproduced here by our own run, not inherited"
+  },
+  "client_gametest": {
+    "command": "gradlew --no-daemon runClientGameTest",
+    "result": "success",
+    "seconds": 250,
+    "observed": [
+      "client booted and joined a local world",
+      "server accepted /summon of minemod:shellback",
+      "player received a shield item",
+      "no recipe or loot-table parse errors in the log"
+    ],
+    "note": "proves the client source set loads and the mod's client entrypoint does not crash; it does not prove the shipped visuals"
+  },
+  "not_verified": [
+    "real launcher installation of the release jar",
+    "hand-played survival loop with natural spawn",
+    "pixel-level appearance of the entity, the plate icon and the plated shield",
+    "environment-caused death (lava, fall, other mob) as a loot negative case"
+  ]
+}

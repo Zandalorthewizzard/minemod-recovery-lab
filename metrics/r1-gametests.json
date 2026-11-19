@@ -1,0 +1,165 @@
+{
+  "source": "fresh run on our machine, isolated worktree, pinned commit 20eeb6d8f4d916b5a7db1e9fcdf298900b7966fb",
+  "build_seconds": 231,
+  "suite_complete_seconds": 5.024,
+  "tests_total": 26,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "minemod-test:smoke_game_test_mod_is_loaded",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.001,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shield_upgrade_game_test_no_plate_no_match",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.049,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shield_upgrade_game_test_already_plated",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.033,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shield_upgrade_game_test_upgrade_preserves_components",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.004,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_long_block_no_stagger",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.285,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_in_window_staggers_zombie",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.028,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_shield_breaks_on_parry",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.016,
+      "failed": false
+    },
+    {
+      "name": "minecraft:always_pass",
+      "class": "minecraft:empty",
+      "time_s": 0.0,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_regular_shield_no_stagger",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.006,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_non_hostile_no_stagger",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.018,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_back_melee_damages",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.01,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_before_delay_not_blocked",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.012,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_upper_bound_edge_staggers",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.012,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:parry_game_test_projectile_no_stagger",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.01,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_side_melee_damages",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.003,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_front_melee_deflected",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.004,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_spawn_loot_game_test_spawn_egg_spawns",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.061,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_spawn_loot_game_test_kill_by_player_drops_plate",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.036,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_spawn_loot_game_test_overworld_biome_has_spawn",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.003,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_spawn_loot_game_test_kill_without_player_no_plate",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.003,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_on_parried_exposes",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.152,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:integration_game_test_full_loop",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.014,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_spawn_loot_game_test_placement_rule",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.174,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_projectile_not_deflected",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.379,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:integration_game_test_parry_shellback_lunge_exposes",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.241,
+      "failed": false
+    },
+    {
+      "name": "minemod-test:shellback_combat_game_test_lunge_sequence_then_exposed",
+      "class": "fabric-gametest-api-v1:empty",
+      "time_s": 0.46,
+      "failed": false
+    }
+  ]
+}

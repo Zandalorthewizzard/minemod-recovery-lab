@@ -1,0 +1,161 @@
+{
+  "delegation_id": "deleg_76dc5863",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-19T23:35:43+02:00",
+  "completed_at": "2026-11-19T23:54:56+02:00",
+  "wall_seconds": 1153.58,
+  "worker_count": 6,
+  "sum_worker_seconds": 5090.71,
+  "parallel_ratio": 4.413,
+  "total_api_calls": 196,
+  "total_tool_calls": 407,
+  "total_tokens": {
+    "input": 15126198,
+    "output": 266373
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 662.99,
+      "api_calls": 29,
+      "tool_calls": 66,
+      "tool_calls_by_tool": {
+        "search_files": 11,
+        "terminal": 3,
+        "read_file": 50,
+        "write_file": 2
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1539473,
+        "output": 36850
+      },
+      "truncated": false,
+      "role": "integration & registration (r1/reports/01)",
+      "artifact": ""
+    },
+    {
+      "task_index": 1,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 1153.19,
+      "api_calls": 21,
+      "tool_calls": 61,
+      "tool_calls_by_tool": {
+        "terminal": 4,
+        "search_files": 10,
+        "read_file": 44,
+        "write_file": 2,
+        "patch": 1
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1729785,
+        "output": 65755
+      },
+      "truncated": false,
+      "role": "entity & AI (r1/reports/02)",
+      "artifact": ""
+    },
+    {
+      "task_index": 2,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 695.73,
+      "api_calls": 26,
+      "tool_calls": 70,
+      "tool_calls_by_tool": {
+        "search_files": 14,
+        "read_file": 52,
+        "terminal": 2,
+        "write_file": 2
+      },
+      "failed_tool_calls": 3,
+      "tokens": {
+        "input": 1655175,
+        "output": 34871
+      },
+      "truncated": false,
+      "role": "loot & craft chain (r1/reports/03)",
+      "artifact": ""
+    },
+    {
+      "task_index": 3,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 848.45,
+      "api_calls": 23,
+      "tool_calls": 56,
+      "tool_calls_by_tool": {
+        "search_files": 13,
+        "terminal": 2,
+        "read_file": 38,
+        "write_file": 2,
+        "patch": 1
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1522119,
+        "output": 44737
+      },
+      "truncated": false,
+      "role": "parry & shield (r1/reports/04)",
+      "artifact": ""
+    },
+    {
+      "task_index": 4,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 859.09,
+      "api_calls": 34,
+      "tool_calls": 60,
+      "tool_calls_by_tool": {
+        "search_files": 19,
+        "read_file": 33,
+        "terminal": 2,
+        "write_file": 2,
+        "patch": 4
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 2158516,
+        "output": 37209
+      },
+      "truncated": false,
+      "role": "tests & coverage (r1/reports/05)",
+      "artifact": ""
+    },
+    {
+      "task_index": 5,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 871.26,
+      "api_calls": 63,
+      "tool_calls": 94,
+      "tool_calls_by_tool": {
+        "terminal": 25,
+        "search_files": 5,
+        "read_file": 49,
+        "write_file": 2,
+        "patch": 13
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 6521130,
+        "output": 46951
+      },
+      "truncated": false,
+      "role": "author pipeline forensics (r1/reports/06)",
+      "artifact": ""
+    }
+  ]
+}

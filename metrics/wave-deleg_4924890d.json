@@ -1,0 +1,151 @@
+{
+  "delegation_id": "deleg_4924890d",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-19T22:24:38+02:00",
+  "completed_at": "2026-11-19T22:34:16+02:00",
+  "wall_seconds": 577.86,
+  "worker_count": 6,
+  "sum_worker_seconds": 2824.32,
+  "parallel_ratio": 4.888,
+  "total_api_calls": 151,
+  "total_tool_calls": 157,
+  "total_tokens": {
+    "input": 7794797,
+    "output": 131913
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 473.4,
+      "api_calls": 28,
+      "tool_calls": 31,
+      "tool_calls_by_tool": {
+        "execute_code": 25,
+        "read_file": 4,
+        "web_extract": 1,
+        "write_file": 1
+      },
+      "failed_tool_calls": 2,
+      "tokens": {
+        "input": 958513,
+        "output": 22245
+      },
+      "truncated": false,
+      "role": "build & supply chain (E0)",
+      "artifact": ""
+    },
+    {
+      "task_index": 1,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 261.3,
+      "api_calls": 14,
+      "tool_calls": 21,
+      "tool_calls_by_tool": {
+        "read_file": 3,
+        "execute_code": 9,
+        "terminal": 7,
+        "write_file": 1,
+        "patch": 1
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 975506,
+        "output": 12396
+      },
+      "truncated": false,
+      "role": "java code security (E0)",
+      "artifact": ""
+    },
+    {
+      "task_index": 2,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 424.87,
+      "api_calls": 23,
+      "tool_calls": 22,
+      "tool_calls_by_tool": {
+        "execute_code": 22
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 987322,
+        "output": 19925
+      },
+      "truncated": false,
+      "role": "scripts & publication (E0)",
+      "artifact": ""
+    },
+    {
+      "task_index": 3,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 577.06,
+      "api_calls": 35,
+      "tool_calls": 34,
+      "tool_calls_by_tool": {
+        "execute_code": 34
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1845231,
+        "output": 28115
+      },
+      "truncated": false,
+      "role": "documentation authority (E0)",
+      "artifact": ""
+    },
+    {
+      "task_index": 4,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 557.97,
+      "api_calls": 25,
+      "tool_calls": 24,
+      "tool_calls_by_tool": {
+        "execute_code": 21,
+        "write_file": 1,
+        "read_file": 1,
+        "patch": 1
+      },
+      "failed_tool_calls": 2,
+      "tokens": {
+        "input": 1779625,
+        "output": 27218
+      },
+      "truncated": false,
+      "role": "features & tests (E0)",
+      "artifact": ""
+    },
+    {
+      "task_index": 5,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 529.72,
+      "api_calls": 26,
+      "tool_calls": 25,
+      "tool_calls_by_tool": {
+        "execute_code": 23,
+        "write_file": 1,
+        "patch": 1
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1248600,
+        "output": 22014
+      },
+      "truncated": false,
+      "role": "delivery pipeline (E0)",
+      "artifact": ""
+    }
+  ]
+}
