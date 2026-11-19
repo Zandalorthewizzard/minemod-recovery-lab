@@ -1,0 +1,55 @@
+{
+  "collector": {
+    "invocation_template": "python tools/observability/collect_run.py --manifest <private-run-dir>/authorization.json --delegation-id <id> --state-db <hermes-home>/state.db --output metrics/<run-id> [--as-of <utc>] [--roster <private>] [--coordinator-events <private>] [--commands <private>]",
+    "network": false,
+    "path": "tools/observability/collect_run.py",
+    "polling": false,
+    "sha256": "262dd1b2984cf52c7790e7c70fe95298898f558670097903a0444f67342777bc",
+    "stdlib_only": true
+  },
+  "delivery_status": "draft_snapshot",
+  "integrity": {
+    "hashes_are_of_utf8_bytes_with_lf_newlines": true,
+    "output_sha256": {
+      "commands.txt": "149d332c33ac30383bf4be25942e34188babc23b01d9e05d556fbed69017f28a",
+      "events.jsonl": "06fce6595bcf5b1ab45897fbee6ac5f27cb42a3420c95cb62a2cd58888d4ac15",
+      "run.json": "92cf47ccbf13b95bcf98a952360a661789485cb490234cc84acb8f5077887a1e",
+      "workers.json": "2e28f97fd6d5b389c488b086f5da6de91a5ee22c80dc3dba5f9d413436f452c2"
+    },
+    "provenance_self_hash": "not included (would be self-referential)"
+  },
+  "run_id": "r1-20261119T212411Z",
+  "schema_version": 1,
+  "sources": [
+    {
+      "bytes": 1946,
+      "read": "authorization clocks, base sha, run id; no free-text goals published",
+      "role": "authorization manifest",
+      "semantic": "<private-run-dir>/authorization.json",
+      "sha256": "929ff8cc6eb246004b5813570bfe919763e083bcd7f9561e72409c0e35e4ead5"
+    },
+    {
+      "bytes": 330985472,
+      "read": "read-only; whitelisted metadata columns of async_delegations and sessions",
+      "role": "hermes state database",
+      "semantic": "<hermes-home>/state.db",
+      "sha256": "85f53722f06bf149babbc777216c0e87d7bb60542bad3f5ca0fcda0697aefccf"
+    },
+    {
+      "bytes": 700,
+      "read": "event type, timestamp, stage, duration; identifiers scrubbed",
+      "role": "coordinator event log",
+      "semantic": "<private-run-dir>/coordinator-events.jsonl",
+      "sha256": "faea8ce63de72a927dfb4e74df33ded23e365b7caffd2e57ad5b965059a2fd7d"
+    }
+  ],
+  "stage": "R1",
+  "transformation_disclosure": [
+    "local absolute paths replaced by semantic names (<repo>, <hermes-home>, <private-run-dir>, <runtime-dir>, <user-home>)",
+    "email addresses, host-share names, bearer tokens, key-like strings and password assignments redacted",
+    "session identifiers replaced by deterministic pseudonyms plus a one-way identity_sha256",
+    "task prompts, goals, transcripts, tool payloads, system prompts and per-message content never read or written",
+    "durations recomputed from timestamps; no duration is copied from a self-report",
+    "unknown or missing values stay null; running intervals are labelled open_at_snapshot"
+  ]
+}

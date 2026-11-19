@@ -1,0 +1,153 @@
+{
+  "delegation_id": "deleg_895b10e1",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-19T23:27:39+02:00",
+  "completed_at": "2026-11-19T23:43:29+02:00",
+  "wall_seconds": 950.8,
+  "worker_count": 6,
+  "sum_worker_seconds": 3754.62,
+  "parallel_ratio": 3.949,
+  "total_api_calls": 174,
+  "total_tool_calls": 183,
+  "total_tokens": {
+    "input": 9236095,
+    "output": 185084
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 950.26,
+      "api_calls": 41,
+      "tool_calls": 47,
+      "tool_calls_by_tool": {
+        "read_file": 2,
+        "terminal": 34,
+        "write_file": 6,
+        "patch": 5
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1679618,
+        "output": 30941
+      },
+      "truncated": false,
+      "role": "runtime runner: portable JDK 25, isolated env, clean build, server GameTests",
+      "artifact": ""
+    },
+    {
+      "task_index": 1,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 400.95,
+      "api_calls": 14,
+      "tool_calls": 13,
+      "tool_calls_by_tool": {
+        "execute_code": 12,
+        "write_file": 1
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 517612,
+        "output": 24582
+      },
+      "truncated": false,
+      "role": "combat & spawn reproductions (static)",
+      "artifact": ""
+    },
+    {
+      "task_index": 2,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 490.2,
+      "api_calls": 26,
+      "tool_calls": 25,
+      "tool_calls_by_tool": {
+        "execute_code": 18,
+        "browser_exec": 7
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1291780,
+        "output": 24020
+      },
+      "truncated": false,
+      "role": "loot, craft, component preservation (static)",
+      "artifact": ""
+    },
+    {
+      "task_index": 3,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 431.06,
+      "api_calls": 23,
+      "tool_calls": 22,
+      "tool_calls_by_tool": {
+        "execute_code": 18,
+        "write_file": 3,
+        "patch": 1
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 981596,
+        "output": 21956
+      },
+      "truncated": false,
+      "role": "parry & client path (static)",
+      "artifact": ""
+    },
+    {
+      "task_index": 4,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 669.51,
+      "api_calls": 33,
+      "tool_calls": 35,
+      "tool_calls_by_tool": {
+        "read_file": 8,
+        "search_files": 4,
+        "terminal": 19,
+        "write_file": 4
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 2487098,
+        "output": 37713
+      },
+      "truncated": false,
+      "role": "author pipeline evidence (static)",
+      "artifact": ""
+    },
+    {
+      "task_index": 5,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 812.64,
+      "api_calls": 37,
+      "tool_calls": 41,
+      "tool_calls_by_tool": {
+        "read_file": 5,
+        "terminal": 23,
+        "write_file": 5,
+        "patch": 5,
+        "execute_code": 3
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 2278391,
+        "output": 45872
+      },
+      "truncated": false,
+      "role": "observability layer: collector + self-test",
+      "artifact": ""
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# Command ledger (sanitized derivation)
+
+verdict: pending_source
+pending_reason: worker command ledgers are private until the coordinator publishes them; absence is not a pass
+
+No command records were available to the collector at snapshot time.
+This is an absence of evidence, not evidence of a clean run.

@@ -1,0 +1,28 @@
+# Self-test output - SYNTHETIC FIXTURES ONLY
+
+This file is not an R1 measurement. Synthetic fixtures are built in a temporary
+directory by the test file itself and carry a SYNTHETIC-FIXTURE banner. The final
+two tests read the real docs/metrics tree but only assert link existence and
+sha256 equality; they do not turn fixture values into R1 data.
+
+command: python tools/observability/test_collect_run.py -v
+cwd: <repo>
+utc_start: 2026-11-19T21:38:54.315926+00:00
+utc_end: 2026-11-19T21:38:58.981237+00:00
+exit_code: 0
+
+----- verbatim stdout/stderr -----
+test_docs_links_resolve (__main__.PublishedTreeTests.test_docs_links_resolve) ... ok
+test_published_hashes_match_provenance (__main__.PublishedTreeTests.test_published_hashes_match_provenance) ... ok
+test_absent_delegation_fails_instead_of_completing (__main__.SyntheticFixtureTests.test_absent_delegation_fails_instead_of_completing) ... ok
+test_deterministic_bytes_for_frozen_input (__main__.SyntheticFixtureTests.test_deterministic_bytes_for_frozen_input) ... ok
+test_missing_columns_are_gaps_not_crashes (__main__.SyntheticFixtureTests.test_missing_columns_are_gaps_not_crashes) ... ok
+test_overlapping_intervals_are_not_additive (__main__.SyntheticFixtureTests.test_overlapping_intervals_are_not_additive) ... ok
+test_running_delegation_reports_lower_bound_wall (__main__.SyntheticFixtureTests.test_running_delegation_reports_lower_bound_wall) ... ok
+test_sanitization_removes_paths_and_secrets (__main__.SyntheticFixtureTests.test_sanitization_removes_paths_and_secrets) ... ok
+test_unfinished_worker_is_open_not_pass (__main__.SyntheticFixtureTests.test_unfinished_worker_is_open_not_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 4.303s
+
+OK
