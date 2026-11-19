@@ -5,6 +5,7 @@ import dev.minemod.entity.ShellbackEntity;
 import dev.minemod.entity.ShellbackPhase;
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -43,6 +44,30 @@ public class ShellbackCombatGameTest {
 		helper.assertFalse(hurt, "front melee must be deflected");
 		helper.assertTrue(shellback.getHealth() == before, "deflected hit must not change health");
 		helper.succeed();
+	}
+
+	@GameTest(maxTicks = 100)
+	public void creative_player_is_targeted(final GameTestHelper helper) {
+		placeFloor(helper);
+		ShellbackEntity shellback = helper.spawn(ModEntities.SHELLBACK, new Vec3(4.0, 1.0, 3.0));
+		shellback.setYRot(0.0F);
+		shellback.setYBodyRot(0.0F);
+		shellback.setYHeadRot(0.0F);
+		ServerPlayer player = (ServerPlayer) helper.makeMockServerPlayerInLevel();
+		player.setGameMode(GameType.CREATIVE);
+		Vec3 absolute = helper.absoluteVec(new Vec3(4.0, 1.0, 5.0));
+		player.setPos(absolute.x, absolute.y, absolute.z);
+		float before = player.getHealth();
+
+		helper.startSequence()
+				.thenIdle(20)
+				.thenExecute(() -> {
+					helper.assertTrue(shellback.getTarget() == player,
+							"creative player must be targeted, target=" + shellback.getTarget());
+					helper.assertTrue(player.getHealth() == before,
+							"creative player must not lose health before the attack lands");
+				})
+				.thenSucceed();
 	}
 
 	@GameTest(maxTicks = 40)

@@ -65,7 +65,7 @@ public class ShellbackEntity extends Monster implements Staggerable {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new ShellbackLungeGoal(this));
 		this.goalSelector.addGoal(1, new FloatGoal(this));
-		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, true));
+		this.goalSelector.addGoal(2, new ShellbackMeleeAttackGoal(this, 1.0, true));
 		this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0));
 		this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
@@ -87,6 +87,66 @@ public class ShellbackEntity extends Monster implements Staggerable {
 
 	boolean isLungeReady() {
 		return this.lungeCooldown <= 0 && this.getPhase() == ShellbackPhase.IDLE;
+	}
+
+	/**
+	 * Two vanilla gates keep a creative player out of combat targeting: {@code Mob#asValidTarget}
+	 * drops a creative player outright, and {@code LivingEntity#canAttack} answers through
+	 * {@code Player#canBeSeenAsEnemy}, which is false while {@code Abilities#invulnerable} is set
+	 * (creative and spectator both set it). A summoned Shellback still has to notice a creative
+	 * player and wind up at them; the game mode itself refuses the damage, so nothing here makes
+	 * the hit land. Both gates are opened for creative players only: spectators stay untargetable
+	 * and every other target keeps the vanilla answer, which leaves survival behaviour unchanged.
+	 */
+	@Override
+	public boolean canAttack(final LivingEntity target) {
+		return target instanceof Player player && player.isCreative() || super.canAttack(target);
+	}
+
+	@Override
+	protected LivingEntity asValidTarget(final LivingEntity target) {
+		if (target instanceof Player player && player.isCreative()) {
+			return target;
+		}
+
+		return super.asValidTarget(target);
+	}
+
+	/**
+	 * Vanilla {@link MeleeAttackGoal} refuses a creative player twice: it will not continue for
+	 * one, and it clears the mob's target when the goal stops. The Shellback keeps chasing and
+	 * swinging at a creative player instead — the game mode itself refuses the damage — while
+	 * spectators stay excluded and every other target goes through the vanilla path untouched.
+	 */
+	private static final class ShellbackMeleeAttackGoal extends MeleeAttackGoal {
+		ShellbackMeleeAttackGoal(final ShellbackEntity shellback, final double speedModifier,
+				final boolean followTargetEvenIfNotSeen) {
+			super(shellback, speedModifier, followTargetEvenIfNotSeen);
+		}
+
+		@Override
+		public boolean canContinueToUse() {
+			LivingEntity current = this.mob.getTarget();
+
+			if (current instanceof Player player && player.isCreative()) {
+				return current.isAlive() && this.mob.isWithinHome(current.blockPosition());
+			}
+
+			return super.canContinueToUse();
+		}
+
+		@Override
+		public void stop() {
+			LivingEntity current = this.mob.getTarget();
+
+			if (current instanceof Player player && player.isCreative()) {
+				this.mob.setAggressive(false);
+				this.mob.getNavigation().stop();
+				return;
+			}
+
+			super.stop();
+		}
 	}
 
 	@Override

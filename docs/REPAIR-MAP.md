@@ -42,6 +42,8 @@ JDK Temurin 25.0.5+8, Gradle 9.7.0, Minecraft 26.3, Fabric API 0.165.2+26.3. С�
 
 ## Чанк A — контур приёмки
 
+**Статус: выполнен** — [`observability/ACCEPTANCE.md`](observability/ACCEPTANCE.md).
+
 - **Критерий приёмки:** любой ремонт проверяется одним и тем же протоколом: `clean build`,
   серверный `runGameTest`, отдельно `runClientGameTest`, фиксация wall time и состава кейсов из
   XML (25 модовых `minemod-test:` + `minecraft:always_pass`). Клиентский прогон — отдельный
@@ -53,6 +55,9 @@ JDK Temurin 25.0.5+8, Gradle 9.7.0, Minecraft 26.3, Fabric API 0.165.2+26.3. С�
 - **Что не делаем:** не вводим CI, не считаем время из XML метрикой производительности.
 
 ## Чанк B — цель в креативе и наблюдателе
+
+**Статус: выполнен** — тест `creative_player_is_targeted` (RED до правки), 27/27 и отдельный
+клиентский прогон; [`metrics/chunk-b.json`](../metrics/chunk-b.json).
 
 - **Критерий приёмки:** призванный в креативе моб в пределах 1 с поворачивается на игрока, рычит
   и делает замах; после `/gamemode survival` тот же моб наносит удар.
