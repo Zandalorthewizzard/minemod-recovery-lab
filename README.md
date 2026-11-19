@@ -41,6 +41,7 @@
 | [docs/PIPELINE-COMPARISON.md](docs/PIPELINE-COMPARISON.md) | Чем наш путь отличается от авторского по замерам | Для разбора «сделано, но не работает» |
 | [docs/E0-SCORECARD.md](docs/E0-SCORECARD.md) | Замеры статической волны E0 по агентам | Для истории и сравнения волн |
 | [docs/observability/README.md](docs/observability/README.md) | Какая величина что означает и чем подтверждена | Перед чтением scorecard'ов |
+| [docs/observability/ACCEPTANCE.md](docs/observability/ACCEPTANCE.md) | Протокол приёмки чанка: команды, критерий успеха, ложные зелёные | Перед каждым ремонтом |
 | [openspec/README.md](openspec/README.md) | Как здесь применяется OpenSpec | Перед оформлением change |
 | [provenance/README.md](provenance/README.md) | Откуда файлы, что не публикуется | При сверке происхождения |
 | [docs/guide-bounded-reviews.md](docs/guide-bounded-reviews.md) | Как выйти из бесконечного ревью | Когда ревью не заканчивается |

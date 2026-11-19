@@ -29,6 +29,7 @@
 | [E0-SCORECARD.md](E0-SCORECARD.md) | Числа статической волны E0 по агентам | Для истории и сравнения волн |
 | [observability/README.md](observability/README.md) | Какая величина что означает, чем подтверждена | До чтения любого scorecard'а |
 | [observability/R1-SCORECARD.md](observability/R1-SCORECARD.md) | Черновой срез R1 (нижние оценки, не приёмка) | Для сверки с `metrics/r1-*` |
+| [observability/ACCEPTANCE.md](observability/ACCEPTANCE.md) | Протокол приёмки любого чанка: команды, успех, ложные зелёные | Перед каждым ремонтом и после него |
 | [../openspec/README.md](../openspec/README.md) | Как применяется OpenSpec и чего он не делает | До оформления change |
 | [../openspec/changes/archive/2026-11-19-verify-imported-baseline/proposal.md](../openspec/changes/archive/2026-11-19-verify-imported-baseline/proposal.md) | Предложение проверки baseline (заархивировано) | Координатору при планировании |
 | [../provenance/README.md](../provenance/README.md) | Правила intake, атрибуция, лицензия | При сверке происхождения |
