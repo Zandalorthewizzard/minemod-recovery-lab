@@ -19,6 +19,8 @@
 | `deleg_76dc5863` | 2026-11-19 | 6 | `deepseek-v4.1-flash` | 1153.6 с (19.23 мин) | 5090.7 с (84.85 мин) | ×4.413 | 196 | 407 | [`metrics/wave-deleg_76dc5863.json`](../metrics/wave-deleg_76dc5863.json) |
 | `deleg_3b8f0c4e` | 2026-11-20 | 6 | `deepseek-v4.1-flash` | 611.7 с (10.20 мин) | 2286.8 с (38.11 мин) | ×3.738 | 177 | 211 | [`metrics/wave-deleg_3b8f0c4e.json`](../metrics/wave-deleg_3b8f0c4e.json) |
 | `deleg_3abcb636` | 2026-11-20 | 3 | `deepseek-v4.1-flash` | 490.5 с (8.17 мин) | 1349.9 с (22.50 мин) | ×2.752 | 100 | 112 | [`metrics/wave-deleg_3abcb636.json`](../metrics/wave-deleg_3abcb636.json) |
+| `deleg_c6e4c4f1` | 2026-11-20 | 1 | `deepseek-v4.1-flash` | 623.7 с (10.40 мин) | 623.5 с (10.39 мин) | ×1.0 | 52 | 63 | [`metrics/wave-deleg_c6e4c4f1.json`](../metrics/wave-deleg_c6e4c4f1.json) |
+| `deleg_01223d4a` | 2026-11-20 | 1 | `deepseek-v4.1-flash` | 1390.9 с (23.18 мин) | 1390.4 с (23.17 мин) | ×1.0 | 76 | 79 | [`metrics/wave-deleg_01223d4a.json`](../metrics/wave-deleg_01223d4a.json) |
 
 
 ### Волна `deleg_4924890d` — по агентам
@@ -93,6 +95,26 @@
 Токены: вход 5626619, выход 87130. Стоимость: null.
 
 
+### Волна `deleg_c6e4c4f1` — по агентам
+Запуск 2026-11-20T01:18:28+02:00 → завершение 2026-11-20T01:28:52+02:00. wall 623.7 с (10.40 мин).
+
+| # | роль | статус | интервал, с | доля wall | API | tool calls |
+|---|---|---|---|---|---|---|
+| 0 | chunk A: acceptance protocol | completed | 623.55 | ×1.00 | 52 | 63 |
+
+Токены: вход 4022048, выход 44454. Стоимость: null.
+
+
+### Волна `deleg_01223d4a` — по агентам
+Запуск 2026-11-20T01:27:16+02:00 → завершение 2026-11-20T01:50:27+02:00. wall 1390.9 с (23.18 мин).
+
+| # | роль | статус | интервал, с | доля wall | API | tool calls |
+|---|---|---|---|---|---|---|
+| 0 | chunk B: creative targeting (executor) | completed | 1390.36 | ×1.00 | 76 | 79 |
+
+Токены: вход 6257168, выход 48808. Стоимость: null.
+
+
 ## Журнал событий
 Каждая строка — реальное машинное время с часовым поясом. Полный лог: [`metrics/events.jsonl`](../metrics/events.jsonl).
 
@@ -114,6 +136,7 @@
 | 2026-11-20T01:01:19+02:00 | `docs_wave_completed` | parent | documentation wave finished: 6/6 writers, wall 611.71 s (10.2 min), sum 2286.81 s (x3.74), 177 API / 211 tool calls; verify_docs PASS (0 outside allowlist, 0 broken links, 0 leaks) |
 | 2026-11-20T01:01:20+02:00 | `docs_wave_published` | parent | commit 12a42f2: repair map, archived change, two specs, handover, single entry point, LAB-06..12, baseline update |
 | 2026-11-20T01:16:04+02:00 | `handover_published` | parent | handover package committed 78ebe5d: 3 documents, verify PASS (0 outside allowlist, 0 broken links, 0 leaks), 103 files in PR #1 |
+| 2026-11-20T01:54:34+02:00 | `chunk_b_accepted` | parent | chunk B accepted: RED test failed (target=null on tick 20), after fix build 52s, 27/27 GameTests (26 mod + 1 vanilla), client run 65s exit 0; commit 52e70fc |
 
 
 ## Чего эти числа не доказывают
