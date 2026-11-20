@@ -1,0 +1,44 @@
+{
+  "chunk": "D",
+  "title": "explosion is not a punch: deflect only melee damage",
+  "date": "2026-11-20",
+  "base": "cd3b9d4 (branch intake/verified-export-0.1.0)",
+  "changed": [
+    "src/main/java/dev/minemod/entity/ShellbackEntity.java (+21/-1): canDeflect accepts only melee damage types, isMeleeAttack whitelist, redundant projectile branch removed",
+    "src/gametest/java/dev/minemod/test/ShellbackCombatGameTest.java (+64): case creeper_front_damages, plus a timing fix in creative_player_is_targeted"
+  ],
+  "cause": "Explosion#getDefaultDamageSource resolves a living explosion source through getIndirectSourceEntity, which answers the creeper itself, so a blast reached canDeflect as direct == causing == creeper and every shape check matched a punch",
+  "red_evidence": {
+    "test": "minemod-test:shellback_combat_game_test_creeper_front_damages",
+    "observed_before_fix": "blast in front, health 24.0 -> 24.0",
+    "observed_after_fix": "blast in front, health 24.0 -> 0.0",
+    "log": "runtime/r1/evidence/executor-d-run-05.log"
+  },
+  "hypothesis_corrected": "The coordinator's pre-dispatch hypothesis (blast arrives with a null direct entity, so the defect is probably not reproducible) was wrong; the executor disproved it from 26.3 bytecode and by experiment. Recorded here on purpose: the gate is an experiment, not the orchestrator's reading of the code.",
+  "acceptance": {
+    "clean_builds": 3,
+    "build_seconds": 57,
+    "server_tests": {
+      "total": 29,
+      "mod": 28,
+      "vanilla_placeholder": 1,
+      "failed": 0,
+      "runs_green": "3 of 3"
+    },
+    "client_run": {
+      "result": "success",
+      "seconds": 53,
+      "exit_code": 0
+    },
+    "logs": {
+      "builds": "runtime/r1/evidence/accept-d-build-1..3.log",
+      "client": "runtime/r1/evidence/accept-d-client.log"
+    },
+    "executor_runs": 8
+  },
+  "harness_fix": "creative_player_is_targeted used to assert the target at tick 20, but the target goal rescans on a randomised 10-tick interval, so it failed once in eight runs. The wait is now 40 ticks; three consecutive clean builds were green.",
+  "not_verified": [
+    "manual in-client step: creeper strictly in front, then strictly behind",
+    "explosion from behind has no separate case: after the fix the damage type decides, so the side no longer matters"
+  ]
+}

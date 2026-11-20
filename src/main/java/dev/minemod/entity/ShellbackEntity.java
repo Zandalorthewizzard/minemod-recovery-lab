@@ -10,6 +10,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -181,12 +182,19 @@ public class ShellbackEntity extends Monster implements Staggerable {
 		return super.hurtServer(level, source, damage);
 	}
 
+	/**
+	 * Only a melee hit from a living attacker is worth deflecting. A creeper blast does not arrive as a
+	 * hand-made {@code explosion(a, b)} with a null direct entity: {@code Explosion#getDefaultDamageSource}
+	 * resolves a living explosion source through {@code getIndirectSourceEntity}, which answers the creeper
+	 * itself, so an explosion reaches here as {@code direct == causing == creeper}. Every shape check below
+	 * then matches a punch, and the shell used to swallow the blast. The damage type is what separates them.
+	 */
 	private boolean canDeflect(final DamageSource source) {
 		if (this.getPhase() == ShellbackPhase.EXPOSED) {
 			return false;
 		}
 
-		if (source.is(DamageTypeTags.IS_PROJECTILE) || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+		if (!isMeleeAttack(source)) {
 			return false;
 		}
 
@@ -198,6 +206,18 @@ public class ShellbackEntity extends Monster implements Staggerable {
 		}
 
 		return this.isFrontal(attacker);
+	}
+
+	/**
+	 * The damage types a living entity produces when it swings at something. {@code LivingEntity#doHurtTarget}
+	 * hands out {@code mob_attack} for a mob and {@code player_attack} for a player, so a wolf bite and a sword
+	 * swing both stay deflectable; {@code is_player_attack} adds the spear and the mace, which are swings too.
+	 * Explosions, fire, falling, magic and projectiles are none of these — they land.
+	 */
+	private static boolean isMeleeAttack(final DamageSource source) {
+		return source.is(DamageTypes.MOB_ATTACK)
+				|| source.is(DamageTypes.MOB_ATTACK_NO_AGGRO)
+				|| source.is(DamageTypeTags.IS_PLAYER_ATTACK);
 	}
 
 	private boolean isFrontal(final Entity attacker) {

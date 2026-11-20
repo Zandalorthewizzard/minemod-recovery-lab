@@ -7,14 +7,17 @@ import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.arrow.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -101,7 +104,9 @@ public class ShellbackCombatGameTest {
 		float before = player.getHealth();
 
 		helper.startSequence()
-				.thenIdle(20)
+				// The target goal rescans on a randomised 10-tick interval, so a fixed check at tick 20
+				// occasionally landed before the first scan and failed the suite. 40 ticks gives it 3-4 scans.
+				.thenIdle(40)
 				.thenExecute(() -> {
 					helper.assertTrue(shellback.getTarget() == player,
 							"creative player must be targeted, target=" + shellback.getTarget());
@@ -154,6 +159,51 @@ public class ShellbackCombatGameTest {
 			helper.assertTrue(shellback.getHealth() < before, "arrow must damage the front, not be deflected");
 			helper.succeed();
 		});
+	}
+
+	/**
+	 * Chunk D: the reflection gate has to be about melee, not about the shell. A real creeper blast that goes
+	 * off strictly in front of the mob must take health off it, and fire, fall and magic damage must land too;
+	 * a melee hit from a living non-player attacker (a wolf) must still bounce, and arrows keep passing on their
+	 * own case ({@link #projectile_not_deflected}).
+	 *
+	 * The blast is a real one: {@code Level#explode(entity, ...)} builds the damage source itself, the way a
+	 * vanilla creeper does, rather than a hand-made {@code damageSources().explosion(a, b)}, which is a different
+	 * case and would prove nothing about the vanilla one.
+	 *
+	 * Each of the four non-melee damage types gets its own mob: vanilla gives a hurt entity ten ticks of
+	 * invulnerability, and a second hit of equal damage inside that window is dropped by
+	 * {@code LivingEntity}, which would hide the very gate this test is about.
+	 */
+	@GameTest(maxTicks = 60)
+	public void creeper_front_damages(final GameTestHelper helper) {
+		placeFloor(helper);
+
+		assertDamageLands(helper, new Vec3(1.0, 1.0, 1.0), helper.getLevel().damageSources().onFire(), "fire");
+		assertDamageLands(helper, new Vec3(7.0, 1.0, 7.0), helper.getLevel().damageSources().fall(), "fall");
+		assertDamageLands(helper, new Vec3(1.0, 1.0, 7.0), helper.getLevel().damageSources().magic(), "magic");
+
+		// NoAI on the wolf: it must stay inside the frontal cone.
+		ShellbackEntity shellback = spawnShellback(helper, new Vec3(4.0, 1.0, 3.0), 0.0F);
+		LivingEntity wolf = helper.spawnWithNoFreeWill(EntityTypes.WOLF, new Vec3(3.0, 1.0, 4.2));
+		float meleeBefore = shellback.getHealth();
+		boolean hurt = shellback.hurtServer(helper.getLevel(),
+				helper.getLevel().damageSources().mobAttack(wolf), HIT_DAMAGE);
+		LOGGER.info("creeper_front_damages: wolf front melee deflect={} health {}", !hurt, shellback.getHealth());
+		helper.assertFalse(hurt, "a frontal melee hit from a living attacker must still be deflected");
+		helper.assertTrue(shellback.getHealth() == meleeBefore, "deflected hit must not change health");
+
+		// The blast goes last: at this range a real one takes a 24 health mob all the way down, so nothing
+		// after it could be observed. NoAI so it does not walk off and blow up on its own schedule.
+		Entity creeper = helper.spawnWithNoFreeWill(EntityTypes.CREEPER, new Vec3(4.0, 1.0, 4.5));
+		float before = shellback.getHealth();
+		Vec3 at = creeper.position();
+		helper.getLevel().explode(creeper, at.x, at.y, at.z, 3.0F, Level.ExplosionInteraction.MOB);
+		LOGGER.info("creeper_front_damages: blast in front, health {} -> {}", before, shellback.getHealth());
+		helper.assertTrue(shellback.getHealth() < before,
+				"a creeper blast strictly in front must take health, was " + before + " now " + shellback.getHealth());
+
+		helper.succeed();
 	}
 
 	@GameTest(maxTicks = 160)
@@ -217,6 +267,22 @@ public class ShellbackCombatGameTest {
 
 	private static boolean meleeHit(final GameTestHelper helper, final ShellbackEntity shellback, final Player player) {
 		return shellback.hurtServer(helper.getLevel(), helper.getLevel().damageSources().playerAttack(player), HIT_DAMAGE);
+	}
+
+	/**
+	 * A damage type that is not a melee hit must reach a fresh mob. Its own mob, because a mob that was just hurt
+	 * spends ten ticks immune and would drop a second hit of equal damage.
+	 */
+	private static void assertDamageLands(final GameTestHelper helper, final Vec3 pos, final DamageSource source,
+			final String what) {
+		ShellbackEntity shellback = spawnShellback(helper, pos, 0.0F);
+		float before = shellback.getHealth();
+		boolean hurt = shellback.hurtServer(helper.getLevel(), source, HIT_DAMAGE);
+		LOGGER.info("creeper_front_damages: {} -> hurt={} health {} -> {}",
+				what, hurt, before, shellback.getHealth());
+		helper.assertTrue(hurt, what + " must land on the shell, health " + before);
+		helper.assertTrue(shellback.getHealth() < before,
+				what + " must reduce health, was " + before + " now " + shellback.getHealth());
 	}
 
 	private static void whenPhase(final GameTestHelper helper, final ShellbackEntity shellback, final ShellbackPhase phase,
