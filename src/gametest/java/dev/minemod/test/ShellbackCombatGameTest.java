@@ -6,10 +6,14 @@ import dev.minemod.entity.ShellbackPhase;
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.arrow.Arrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -23,6 +27,8 @@ import org.slf4j.LoggerFactory;
  */
 public class ShellbackCombatGameTest {
 	private static final int ARENA_RADIUS = 7;
+	private static final int COVER_X = 4;
+	private static final int COVER_Z = 4;
 	private static final float HIT_DAMAGE = 5.0F;
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShellbackCombatGameTest.class);
 
@@ -44,6 +50,41 @@ public class ShellbackCombatGameTest {
 		helper.assertFalse(hurt, "front melee must be deflected");
 		helper.assertTrue(shellback.getHealth() == before, "deflected hit must not change health");
 		helper.succeed();
+	}
+
+	/**
+	 * Chunk C: the frontal hit is deflected before {@code LivingEntity#hurtServer} runs, so the mob never
+	 * learns who hit it and goes on strolling. The attacker stands behind a one-block pillar here, which
+	 * also hides them from {@code NearestAttackableTargetGoal} (it is built with {@code mustSee}): getting a
+	 * target at all can therefore only come from the memory of the deflected hit. The hit itself is made
+	 * through the real attack path, {@code Player#attack}. The cover is dropped as soon as the mob has the
+	 * target, so the mob then has a clear floor to close in on.
+	 */
+	@GameTest(maxTicks = 100)
+	public void retaliation_after_deflect(final GameTestHelper helper) {
+		placeFloor(helper);
+		placeCover(helper, true);
+		ShellbackEntity shellback = helper.spawn(ModEntities.SHELLBACK, new Vec3(4.0, 1.0, 3.0));
+		Player player = spawnPlayer(helper, new Vec3(4.0, 1.0, 6.0), 180.0F);
+		player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.IRON_SWORD));
+
+		// Two idle ticks, so the hit is not recorded on tickCount 0: HurtByTargetGoal starts with a cached
+		// timestamp of 0 and would ignore a memory stamped on the very first tick of the mob's life.
+		helper.runAfterDelay(2, () -> {
+			shellback.setYRot(0.0F);
+			shellback.setYBodyRot(0.0F);
+			shellback.setYHeadRot(0.0F);
+			helper.assertTrue(!shellback.hasLineOfSight(player),
+					"the pillar must hide the attacker from the mob, otherwise either path could find it");
+			float before = shellback.getHealth();
+			player.attack(shellback);
+			helper.assertFalse(shellback.getHealth() < before,
+					"frontal melee must still be deflected, health " + shellback.getHealth() + " was " + before);
+			helper.assertTrue(shellback.getHealth() == before, "deflected hit must not change health");
+			helper.assertTrue(shellback.getLastHurtByMob() == player,
+					"the mob must remember who hit it, lastHurtByMob=" + shellback.getLastHurtByMob());
+			new RetaliationWatch(helper, shellback, player).tick();
+		});
 	}
 
 	@GameTest(maxTicks = 100)
@@ -150,6 +191,13 @@ public class ShellbackCombatGameTest {
 				helper.setBlock(x, 0, z, stone);
 	}
 
+	/** Two blocks of stone between the mob and the attacker: enough to hide a 0.7 tall mob's eyes. */
+	private static void placeCover(final GameTestHelper helper, final boolean present) {
+		BlockState state = present ? Blocks.STONE.defaultBlockState() : Blocks.AIR.defaultBlockState();
+		helper.setBlock(COVER_X, 1, COVER_Z, state);
+		helper.setBlock(COVER_X, 2, COVER_Z, state);
+	}
+
 	private static ShellbackEntity spawnShellback(final GameTestHelper helper, final Vec3 pos, final float yaw) {
 		ShellbackEntity shellback = helper.spawnWithNoFreeWill(ModEntities.SHELLBACK, pos);
 		shellback.setYRot(yaw);
@@ -245,5 +293,69 @@ public class ShellbackCombatGameTest {
 
 			this.helper.runAfterDelay(1, this::tick);
 		}
+	}
+
+	/**
+	 * Polls once per tick: the deflected hit must show up as a target within {@link #TARGET_DEADLINE}
+	 * ticks, and the mob must then close in on that target instead of resuming its stroll.
+	 */
+	private static final class RetaliationWatch {
+		private static final int TARGET_DEADLINE = 40;
+		private static final int CHASE_DEADLINE = 40;
+		private static final double CHASE_DISTANCE = 1.0;
+		private final GameTestHelper helper;
+		private final ShellbackEntity shellback;
+		private final Player player;
+		private final long startTick;
+		private final double startDistance;
+		private long targetTick = -1L;
+
+		RetaliationWatch(final GameTestHelper helper, final ShellbackEntity shellback, final Player player) {
+			this.helper = helper;
+			this.shellback = shellback;
+			this.player = player;
+			this.startTick = helper.getTick();
+			this.startDistance = horizontalDistance(shellback, player);
+		}
+
+		void tick() {
+			long elapsed = this.helper.getTick() - this.startTick;
+
+			if (this.targetTick < 0) {
+				if (this.shellback.getTarget() == this.player) {
+					this.targetTick = this.helper.getTick();
+					// The mob now knows who hit it; open the floor so the chase is not spent on the cover.
+					placeCover(this.helper, false);
+					LOGGER.info("retaliation_after_deflect: target acquired after {} ticks, phase={} distance={}",
+							elapsed, this.shellback.getPhase(), this.startDistance);
+				} else {
+					this.helper.assertTrue(elapsed <= TARGET_DEADLINE,
+							"a deflected frontal hit must make the mob retaliate within " + TARGET_DEADLINE
+									+ " ticks, target=" + this.shellback.getTarget()
+									+ " lastHurtByMob=" + this.shellback.getLastHurtByMob());
+					this.helper.runAfterDelay(1, this::tick);
+					return;
+				}
+			}
+
+			double distance = horizontalDistance(this.shellback, this.player);
+
+			if (distance <= this.startDistance - CHASE_DISTANCE) {
+				LOGGER.info("retaliation_after_deflect: mob closed from {} to {} blocks in {} ticks",
+						this.startDistance, distance, this.helper.getTick() - this.targetTick);
+				this.helper.succeed();
+				return;
+			}
+
+			this.helper.assertTrue(this.helper.getTick() - this.targetTick <= CHASE_DEADLINE,
+					"the mob must go on the attack, distance " + distance + " of the original " + this.startDistance);
+			this.helper.runAfterDelay(1, this::tick);
+		}
+	}
+
+	private static double horizontalDistance(final Entity one, final Entity other) {
+		double dx = one.getX() - other.getX();
+		double dz = one.getZ() - other.getZ();
+		return Math.sqrt(dx * dx + dz * dz);
 	}
 }

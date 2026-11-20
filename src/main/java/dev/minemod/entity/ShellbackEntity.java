@@ -20,6 +20,7 @@ import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -69,6 +70,10 @@ public class ShellbackEntity extends Monster implements Staggerable {
 		this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0));
 		this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 8.0F));
 		this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+		// A deflected hit never reaches LivingEntity#hurtServer, so the default target selector has to be
+		// told about the attacker through the hurt-by memory; without this goal the mob never answers a
+		// blocked hit and keeps strolling.
+		this.targetSelector.addGoal(0, new HurtByTargetGoal(this));
 		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
 	}
 
@@ -210,6 +215,12 @@ public class ShellbackEntity extends Monster implements Staggerable {
 		Entity attacker = source.getEntity();
 
 		if (attacker != null) {
+			if (attacker instanceof LivingEntity livingAttacker) {
+				// hurtServer returns before super.hurtServer, so LivingEntity never records the attacker.
+				// Do it here, or the mob has no idea it was hit and the retaliation goal has nothing to use.
+				this.setLastHurtByMob(livingAttacker);
+			}
+
 			Vec3 away = new Vec3(attacker.getX() - this.getX(), 0.0, attacker.getZ() - this.getZ());
 
 			if (away.lengthSqr() > 1.0E-6) {
