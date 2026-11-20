@@ -1,0 +1,44 @@
+{
+  "delegation_id": "deleg_c6e4c4f1",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T01:18:28+02:00",
+  "completed_at": "2026-11-20T01:28:52+02:00",
+  "wall_seconds": 623.7,
+  "worker_count": 1,
+  "sum_worker_seconds": 623.55,
+  "parallel_ratio": 1.0,
+  "total_api_calls": 52,
+  "total_tool_calls": 63,
+  "total_tokens": {
+    "input": 4022048,
+    "output": 44454
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 623.55,
+      "api_calls": 52,
+      "tool_calls": 63,
+      "tool_calls_by_tool": {
+        "read_file": 17,
+        "terminal": 22,
+        "web_search": 1,
+        "web_extract": 1,
+        "write_file": 9,
+        "patch": 13
+      },
+      "failed_tool_calls": 3,
+      "tokens": {
+        "input": 4022048,
+        "output": 44454
+      },
+      "truncated": false,
+      "role": "chunk A: acceptance protocol",
+      "artifact": ""
+    }
+  ]
+}

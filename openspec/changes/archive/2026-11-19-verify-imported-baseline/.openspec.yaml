@@ -1,0 +1,10 @@
+schema: spec-driven
+created: 2026-11-19
+archived: 2026-11-19
+skip_specs: true
+x-lab-status: archived-verified
+x-lab-kind: verification-only
+x-lab-run-commit: 20eeb6d8f4d916b5a7db1e9fcdf298900b7966fb
+x-lab-specs-derived-after-verification:
+  - shellback-encounter
+  - plated-shield

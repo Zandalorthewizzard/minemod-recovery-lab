@@ -1,0 +1,160 @@
+{
+  "delegation_id": "deleg_3b8f0c4e",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T00:29:58+02:00",
+  "completed_at": "2026-11-20T00:40:09+02:00",
+  "wall_seconds": 611.71,
+  "worker_count": 6,
+  "sum_worker_seconds": 2286.81,
+  "parallel_ratio": 3.738,
+  "total_api_calls": 177,
+  "total_tool_calls": 211,
+  "total_tokens": {
+    "input": 10343767,
+    "output": 128329
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 457.77,
+      "api_calls": 21,
+      "tool_calls": 28,
+      "tool_calls_by_tool": {
+        "read_file": 15,
+        "search_files": 3,
+        "terminal": 5,
+        "write_file": 3,
+        "execute_code": 2
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 1600708,
+        "output": 27976
+      },
+      "truncated": false,
+      "role": "repair map (docs/REPAIR-MAP.md)",
+      "artifact": ""
+    },
+    {
+      "task_index": 1,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 611.26,
+      "api_calls": 43,
+      "tool_calls": 65,
+      "tool_calls_by_tool": {
+        "terminal": 36,
+        "read_file": 8,
+        "write_file": 9,
+        "patch": 12
+      },
+      "failed_tool_calls": 2,
+      "tokens": {
+        "input": 3774179,
+        "output": 36756
+      },
+      "truncated": false,
+      "role": "openspec archive and specs",
+      "artifact": ""
+    },
+    {
+      "task_index": 2,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 474.92,
+      "api_calls": 44,
+      "tool_calls": 43,
+      "tool_calls_by_tool": {
+        "execute_code": 24,
+        "read_file": 10,
+        "write_file": 3,
+        "patch": 6
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 2343893,
+        "output": 20854
+      },
+      "truncated": false,
+      "role": "handover document",
+      "artifact": ""
+    },
+    {
+      "task_index": 3,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 355.31,
+      "api_calls": 37,
+      "tool_calls": 41,
+      "tool_calls_by_tool": {
+        "terminal": 17,
+        "read_file": 7,
+        "write_file": 7,
+        "execute_code": 4,
+        "patch": 6
+      },
+      "failed_tool_calls": 3,
+      "tokens": {
+        "input": 1648777,
+        "output": 20917
+      },
+      "truncated": false,
+      "role": "single entry point: README and PROJECT-MAP",
+      "artifact": ""
+    },
+    {
+      "task_index": 4,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 150.07,
+      "api_calls": 16,
+      "tool_calls": 19,
+      "tool_calls_by_tool": {
+        "read_file": 5,
+        "search_files": 1,
+        "terminal": 9,
+        "patch": 2,
+        "write_file": 2
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 432924,
+        "output": 7761
+      },
+      "truncated": false,
+      "role": "decisions LAB-06..LAB-12",
+      "artifact": ""
+    },
+    {
+      "task_index": 5,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 237.48,
+      "api_calls": 16,
+      "tool_calls": 15,
+      "tool_calls_by_tool": {
+        "execute_code": 9,
+        "write_file": 2,
+        "read_file": 2,
+        "patch": 2
+      },
+      "failed_tool_calls": 2,
+      "tokens": {
+        "input": 543286,
+        "output": 14065
+      },
+      "truncated": false,
+      "role": "baseline after R1",
+      "artifact": ""
+    }
+  ]
+}

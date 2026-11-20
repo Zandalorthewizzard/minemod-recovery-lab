@@ -1,0 +1,40 @@
+{
+  "chunk": "C",
+  "title": "retaliation after a deflected frontal hit",
+  "date": "2026-11-20",
+  "base": "ad880d4 (branch intake/verified-export-0.1.0)",
+  "changed": [
+    "src/main/java/dev/minemod/entity/ShellbackEntity.java (+11): HurtByTargetGoal at target priority 0, setLastHurtByMob inside deflect()",
+    "src/gametest/java/dev/minemod/test/ShellbackCombatGameTest.java (+112, additions only): case retaliation_after_deflect"
+  ],
+  "red_evidence": {
+    "test": "minemod-test:shellback_combat_game_test_retaliation_after_deflect",
+    "failure_before_fix": "lastHurtByMob=null on tick 2",
+    "log": "runtime/r1/evidence/executor-c-run-01.log"
+  },
+  "cause": "hurtServer returns false before super.hurtServer, so LivingEntity never records the attacker; the target selector had no HurtByTargetGoal at all",
+  "acceptance": {
+    "build_seconds": 57,
+    "server_tests": {
+      "total": 28,
+      "mod": 27,
+      "vanilla_placeholder": 1,
+      "failed": 0
+    },
+    "client_run": {
+      "result": "success",
+      "seconds": 62,
+      "exit_code": 0
+    },
+    "logs": {
+      "build": "runtime/r1/evidence/accept-c-build.log",
+      "client": "runtime/r1/evidence/accept-c-client.log"
+    },
+    "executor_runs": 5
+  },
+  "not_verified": [
+    "manual in-client step: hit the shell, step back, the mob follows",
+    "the target assertion was never observed failing on its own: run 01 failed earlier on the hurt-by memory; isolation rests on the passing !hasLineOfSight precondition plus mustSee=true",
+    "projectile retaliation is inferred from the vanilla HURT_BY_TARGETING predicate, not covered by its own test case"
+  ]
+}

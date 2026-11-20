@@ -1,0 +1,42 @@
+{
+  "delegation_id": "deleg_01223d4a",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T01:27:16+02:00",
+  "completed_at": "2026-11-20T01:50:27+02:00",
+  "wall_seconds": 1390.87,
+  "worker_count": 1,
+  "sum_worker_seconds": 1390.36,
+  "parallel_ratio": 1.0,
+  "total_api_calls": 76,
+  "total_tool_calls": 79,
+  "total_tokens": {
+    "input": 6257168,
+    "output": 48808
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 1390.36,
+      "api_calls": 76,
+      "tool_calls": 79,
+      "tool_calls_by_tool": {
+        "execute_code": 66,
+        "read_file": 4,
+        "patch": 7,
+        "write_file": 2
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 6257168,
+        "output": 48808
+      },
+      "truncated": false,
+      "role": "chunk B: creative targeting (executor)",
+      "artifact": ""
+    }
+  ]
+}

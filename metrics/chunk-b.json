@@ -1,0 +1,40 @@
+{
+  "chunk": "B",
+  "title": "creative player is targeted, damage still refused by the game mode",
+  "date": "2026-11-20",
+  "base": "bb81b01 (branch intake/verified-export-0.1.0)",
+  "changed": [
+    "src/main/java/dev/minemod/entity/ShellbackEntity.java (+61/-1): canAttack and asValidTarget open for creative players, private ShellbackMeleeAttackGoal keeps chasing and swinging at them",
+    "src/gametest/java/dev/minemod/test/ShellbackCombatGameTest.java (+25): new case creative_player_is_targeted"
+  ],
+  "red_evidence": {
+    "test": "minemod-test:shellback_combat_game_test_creative_player_is_targeted",
+    "failure_before_fix": "creative player must be targeted, target=null on tick 20",
+    "log": "runtime/r1/evidence/b-red-02.log"
+  },
+  "acceptance": {
+    "build_seconds": 52,
+    "server_tests": {
+      "total": 27,
+      "mod": 26,
+      "vanilla_placeholder": 1,
+      "failed": 0,
+      "suite_seconds": 5.019
+    },
+    "client_run": {
+      "result": "success",
+      "seconds": 65,
+      "exit_code": 0,
+      "observed": "client booted, world loaded, player received a shield"
+    },
+    "logs": {
+      "build": "runtime/r1/evidence/accept-b-build.log",
+      "client": "runtime/r1/evidence/accept-b-client.log"
+    }
+  },
+  "harness_fix": "the case waited exactly 20 ticks for a goal that rescans on a randomised 10-tick interval and flaked once in eight runs; the wait is now 40 ticks (fixed while accepting chunk D)",
+  "not_verified": [
+    "manual in-client step: the mob visibly chases and swings at a creative player",
+    "spectator exclusion is proven by code reading, not by a separate test case"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "delegation_id": "deleg_5f153e1d",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T02:29:30+02:00",
+  "completed_at": "2026-11-20T02:47:16+02:00",
+  "wall_seconds": 1066.13,
+  "worker_count": 1,
+  "sum_worker_seconds": 1065.66,
+  "parallel_ratio": 1.0,
+  "total_api_calls": 55,
+  "total_tool_calls": 63,
+  "total_tokens": {
+    "input": 3597116,
+    "output": 48302
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 1065.66,
+      "api_calls": 55,
+      "tool_calls": 63,
+      "tool_calls_by_tool": {
+        "terminal": 41,
+        "read_file": 9,
+        "patch": 10,
+        "execute_code": 1,
+        "write_file": 2
+      },
+      "failed_tool_calls": 0,
+      "tokens": {
+        "input": 3597116,
+        "output": 48302
+      },
+      "truncated": false,
+      "role": "chunk D: damage-type gate (executor)",
+      "artifact": ""
+    }
+  ]
+}

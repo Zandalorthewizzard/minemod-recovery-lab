@@ -1,0 +1,29 @@
+{
+	"schemaVersion": 1,
+	"id": "minemod-test",
+	"version": "1.0.0",
+	"name": "Minemod Game Tests",
+	"description": "Game tests for Minemod.",
+	"license": "All-Rights-Reserved",
+	"environment": "*",
+	"entrypoints": {
+		"fabric-gametest": [
+			"dev.minemod.test.SmokeGameTest",
+			"dev.minemod.test.ShieldUpgradeGameTest",
+			"dev.minemod.test.ParryGameTest",
+			"dev.minemod.test.ShellbackCombatGameTest",
+			"dev.minemod.test.ShellbackSpawnLootGameTest",
+			"dev.minemod.test.IntegrationGameTest"
+		],
+		"fabric-client-gametest": [
+			"dev.minemod.test.client.ClientSmokeTest"
+		]
+	},
+	"depends": {
+		"minemod": "*",
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

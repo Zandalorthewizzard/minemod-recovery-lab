@@ -1,0 +1,43 @@
+{
+  "delegation_id": "deleg_55e25c17",
+  "state": "completed",
+  "model_declared": "deepseek-v4.1-flash",
+  "dispatched_at": "2026-11-20T02:07:50+02:00",
+  "completed_at": "2026-11-20T02:24:39+02:00",
+  "wall_seconds": 1008.53,
+  "worker_count": 1,
+  "sum_worker_seconds": 1008.11,
+  "parallel_ratio": 1.0,
+  "total_api_calls": 43,
+  "total_tool_calls": 52,
+  "total_tokens": {
+    "input": 3098185,
+    "output": 49627
+  },
+  "tasks": [
+    {
+      "task_index": 0,
+      "status": "completed",
+      "exit_reason": "completed",
+      "model": "deepseek-v4.1-flash",
+      "duration_seconds": 1008.11,
+      "api_calls": 43,
+      "tool_calls": 52,
+      "tool_calls_by_tool": {
+        "terminal": 37,
+        "read_file": 6,
+        "patch": 6,
+        "write_file": 2,
+        "execute_code": 1
+      },
+      "failed_tool_calls": 1,
+      "tokens": {
+        "input": 3098185,
+        "output": 49627
+      },
+      "truncated": false,
+      "role": "chunk C: retaliation after deflect (executor)",
+      "artifact": ""
+    }
+  ]
+}

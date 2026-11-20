@@ -1,0 +1,24 @@
+# Determinism check - frozen source, two independent runs
+
+Input is one frozen copy of the Hermes state database taken before this check;
+the snapshot instant is fixed, so no clock value can differ between runs.
+Only hashes are published; the frozen copy and its path stay private.
+
+frozen_source_sha256: a3b1bac95a1dafcf8b791720d8215783b42534258f9368372a4007554b45ce77
+frozen_source_bytes: 331788288
+as_of: 2026-11-19T21:35:39+00:00
+
+run1 commands.txt sha256 149d332c33ac30383bf4be25942e34188babc23b01d9e05d556fbed69017f28a match
+run1 events.jsonl sha256 2d0ddeaff5ecc68f66cb5994394ff621c625348e047275d79aaeceee2c7f0833 match
+run1 provenance.json sha256 a6d442123d123026cce25c43a3adb862295faec9652e81d22a7f3ef96d65ac65 match
+run1 run.json sha256 79656012e0f282c173b451373a3f3810000aa9a09ad73867d0a1259f460f28d5 match
+run1 workers.json sha256 b91dc1b699ff9555ef9b8a7b09a3cc5df23467b36a14350aef6246fead55f23b match
+run1 exit_code 0
+run2 commands.txt sha256 149d332c33ac30383bf4be25942e34188babc23b01d9e05d556fbed69017f28a match
+run2 events.jsonl sha256 2d0ddeaff5ecc68f66cb5994394ff621c625348e047275d79aaeceee2c7f0833 match
+run2 provenance.json sha256 a6d442123d123026cce25c43a3adb862295faec9652e81d22a7f3ef96d65ac65 match
+run2 run.json sha256 79656012e0f282c173b451373a3f3810000aa9a09ad73867d0a1259f460f28d5 match
+run2 workers.json sha256 b91dc1b699ff9555ef9b8a7b09a3cc5df23467b36a14350aef6246fead55f23b match
+run2 exit_code 0
+
+result: PASS - byte-identical outputs for identical frozen input

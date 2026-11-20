@@ -1,0 +1,7 @@
+{
+  "entity.minemod.shellback": "Shellback",
+  "item.minemod.shellback_plate": "Shellback Plate",
+  "item.minemod.shellback_spawn_egg": "Shellback Spawn Egg",
+  "tooltip.minemod.plated_shield": "Shellback Plate: timed parry",
+  "tooltip.minemod.plated_shield.hint": "Raise just before a melee hit to stagger the attacker"
+}
