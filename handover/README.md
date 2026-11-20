@@ -10,6 +10,7 @@
 |---|---|---|
 | [../docs/HANDOVER.md](../docs/HANDOVER.md) | Что проверено, чего нет, как запускать, что дальше по порядку | ссылки на `metrics/r1-*`, `provenance/source-manifest.json` |
 | [../docs/REPAIR-MAP.md](../docs/REPAIR-MAP.md) | Из каких наблюдаемых чанков A–K состоит ремонт, порядок, параллелизм | зоны записи — файлы с номерами строк |
+| [WHAT-WE-REPAIRED.md](WHAT-WE-REPAIRED.md) | Что уже отремонтировано, чем доказано и сколько это заняло | коммиты `6221b00`, `52e70fc`, `metrics/chunk-b.json` |
 | [../docs/RECOVERY-STATUS.md](../docs/RECOVERY-STATUS.md) | Что работает, что только в тесте, что не подключено, что требует рук | матрица «сценарий → статус → чем подтверждено» |
 | [../docs/PIPELINE-COMPARISON.md](../docs/PIPELINE-COMPARISON.md) | Почему выходило «сделано, но не работает» — по замерам | `metrics/wave-*.json`, `metrics/events.jsonl` |
 | [../docs/PIPELINE-TELEMETRY.md](../docs/PIPELINE-TELEMETRY.md) | Сколько заняли волны и чем это записано | те же машинные записи, ручных значений нет |
