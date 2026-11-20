@@ -32,11 +32,11 @@ time ./gradlew --no-daemon clean build; echo "exit=$?"
 **Шаг 3 — серверные GameTests: состав из XML, не из консольной сводки.**
 ```bash
 XML=build/test-results/gameTest/game-test.xml      # путь задан в build.gradle:33
-grep -c '<testcase' $XML                            # всего кейсов
-grep -c 'name="minemod-test:' $XML                  # модовые
-grep -c 'name="minecraft:always_pass"' $XML         # ванильная заглушка
-grep -c '<failure' $XML; grep -c '<error' $XML; grep -c '<skipped' $XML   # все три = 0
-grep -rho '@GameTest' src/gametest/java | wc -l     # ожидаемое число модовых
+grep -o '<testcase' $XML | wc -l                   # всего кейсов
+grep -o 'name="minemod-test:' $XML | wc -l         # модовые
+grep -o 'name="minecraft:always_pass"' $XML | wc -l # ванильная заглушка
+grep -o '<failure' $XML | wc -l; grep -o '<error' $XML | wc -l; grep -o '<skipped' $XML | wc -l   # все три = 0
+grep -ro '@GameTest' src/gametest/java | wc -l     # ожидаемое число модовых
 ```
 
 Состав: `модовые == @GameTest в src/gametest/java`, `всего == модовые + 1`, три счётчика отказов по нулю; на базе `20eeb6d8` это 25 + `minecraft:always_pass` = 26 при 0 падений ([`metrics/r1-gametests.json`](../../metrics/r1-gametests.json)).

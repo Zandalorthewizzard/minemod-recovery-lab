@@ -17,7 +17,9 @@
 База: ветка `intake/verified-export-0.1.0`, HEAD — текущий (`git log -1`),
 JDK Temurin 25.0.5+8, Gradle 9.7.0, Minecraft 26.3, Fabric API 0.165.2+26.3. Свежий прогон на
 нашем стенде: build 231 с, 26/26 (25 модовых + `minecraft:always_pass`), 5.024 с; клиентский
-прогон 250 с; второй независимый прогон — build 1 м 47 с и те же 26/26. Числа и статусы — в
+прогон 250 с; второй независимый прогон — build 1 м 47 с и те же 26/26. Это числа **базовой**
+ревизии `20eeb6d8`; после ремонтов B–D на HEAD серии — 29/29 (28 модовых + заглушка), см.
+[`../metrics/chunk-d.json`](../metrics/chunk-d.json). Числа и статусы — в
 [`RECOVERY-STATUS.md`](RECOVERY-STATUS.md), процесс и его цена — в
 [`PIPELINE-COMPARISON.md`](PIPELINE-COMPARISON.md), правила приёмки — в [`DELIVERY.md`](DELIVERY.md).
 

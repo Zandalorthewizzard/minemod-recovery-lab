@@ -32,6 +32,7 @@
       "client": "runtime/r1/evidence/accept-b-client.log"
     }
   },
+  "harness_fix": "the case waited exactly 20 ticks for a goal that rescans on a randomised 10-tick interval and flaked once in eight runs; the wait is now 40 ticks (fixed while accepting chunk D)",
   "not_verified": [
     "manual in-client step: the mob visibly chases and swings at a creative player",
     "spectator exclusion is proven by code reading, not by a separate test case"
