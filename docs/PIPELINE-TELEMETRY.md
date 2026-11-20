@@ -21,6 +21,7 @@
 | `deleg_3abcb636` | 2026-11-20 | 3 | `deepseek-v4.1-flash` | 490.5 с (8.17 мин) | 1349.9 с (22.50 мин) | ×2.752 | 100 | 112 | [`metrics/wave-deleg_3abcb636.json`](../metrics/wave-deleg_3abcb636.json) |
 | `deleg_c6e4c4f1` | 2026-11-20 | 1 | `deepseek-v4.1-flash` | 623.7 с (10.40 мин) | 623.5 с (10.39 мин) | ×1.0 | 52 | 63 | [`metrics/wave-deleg_c6e4c4f1.json`](../metrics/wave-deleg_c6e4c4f1.json) |
 | `deleg_01223d4a` | 2026-11-20 | 1 | `deepseek-v4.1-flash` | 1390.9 с (23.18 мин) | 1390.4 с (23.17 мин) | ×1.0 | 76 | 79 | [`metrics/wave-deleg_01223d4a.json`](../metrics/wave-deleg_01223d4a.json) |
+| `deleg_55e25c17` | 2026-11-20 | 1 | `deepseek-v4.1-flash` | 1008.5 с (16.81 мин) | 1008.1 с (16.80 мин) | ×1.0 | 43 | 52 | [`metrics/wave-deleg_55e25c17.json`](../metrics/wave-deleg_55e25c17.json) |
 
 
 ### Волна `deleg_4924890d` — по агентам
@@ -115,6 +116,16 @@
 Токены: вход 6257168, выход 48808. Стоимость: null.
 
 
+### Волна `deleg_55e25c17` — по агентам
+Запуск 2026-11-20T02:07:50+02:00 → завершение 2026-11-20T02:24:39+02:00. wall 1008.5 с (16.81 мин).
+
+| # | роль | статус | интервал, с | доля wall | API | tool calls |
+|---|---|---|---|---|---|---|
+| 0 | chunk C: retaliation after deflect (executor) | completed | 1008.11 | ×1.00 | 43 | 52 |
+
+Токены: вход 3098185, выход 49627. Стоимость: null.
+
+
 ## Журнал событий
 Каждая строка — реальное машинное время с часовым поясом. Полный лог: [`metrics/events.jsonl`](../metrics/events.jsonl).
 
@@ -137,6 +148,7 @@
 | 2026-11-20T01:01:20+02:00 | `docs_wave_published` | parent | commit 12a42f2: repair map, archived change, two specs, handover, single entry point, LAB-06..12, baseline update |
 | 2026-11-20T01:16:04+02:00 | `handover_published` | parent | handover package committed 78ebe5d: 3 documents, verify PASS (0 outside allowlist, 0 broken links, 0 leaks), 103 files in PR #1 |
 | 2026-11-20T01:54:34+02:00 | `chunk_b_accepted` | parent | chunk B accepted: RED test failed (target=null on tick 20), after fix build 52s, 27/27 GameTests (26 mod + 1 vanilla), client run 65s exit 0; commit 52e70fc |
+| 2026-11-20T02:28:40+02:00 | `chunk_c_accepted` | parent | chunk C accepted: RED lastHurtByMob=null on tick 2, after fix build 57s, 28/28 (27 mod + 1 vanilla), client 62s exit 0; commit b1db57c |
 
 
 ## Чего эти числа не доказывают
